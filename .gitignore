@@ -1,0 +1,38 @@
+node_modules/
+dist/
+build/
+coverage/
+.env
+.env.*
+!.env.example
+
+# Logs and temporary files
+logs/
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Private keys and wallet material
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+*.jks
+*.seed
+
+# Hardhat generated files
+blockchain/artifacts/
+blockchain/cache/
+blockchain/typechain-types/
+blockchain/coverage/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Desktop.ini

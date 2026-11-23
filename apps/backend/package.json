@@ -1,0 +1,23 @@
+{
+  "name": "@intentguard/backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "predev": "npm run build --workspace @intentguard/shared",
+    "dev": "tsx watch src/server.ts",
+    "dev:serve": "tsx watch src/server.ts",
+    "prebuild": "npm run build --workspace @intentguard/shared",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "@intentguard/shared": "*",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "tsx": "^4.23.15"
+  }
+}

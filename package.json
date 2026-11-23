@@ -1,0 +1,38 @@
+{
+  "name": "intentguard",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/frontend",
+    "apps/backend",
+    "blockchain",
+    "packages/shared"
+  ],
+  "scripts": {
+    "install:all": "npm install",
+    "dev": "npm run build --workspace @intentguard/shared && concurrently -k -n frontend,backend \"npm run dev:serve --workspace @intentguard/frontend\" \"npm run dev:serve --workspace @intentguard/backend\"",
+    "dev:frontend": "npm run dev --workspace @intentguard/frontend",
+    "dev:backend": "npm run dev --workspace @intentguard/backend",
+    "build:frontend": "npm run build --workspace @intentguard/frontend",
+    "build:backend": "npm run build --workspace @intentguard/backend",
+    "build": "npm run build:frontend && npm run build:backend",
+    "blockchain:compile": "npm run compile --workspace @intentguard/blockchain",
+    "blockchain:test": "npm run test --workspace @intentguard/blockchain",
+    "blockchain:node": "npm run node --workspace @intentguard/blockchain",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@types/node": "^22.19.15",
+    "concurrently": "^10.0.7",
+    "eslint": "^10.15.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.8",
+    "globals": "^17.14.0",
+    "prettier": "^3.10.1",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.73.0"
+  }
+}
