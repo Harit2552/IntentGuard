@@ -1,0 +1,53 @@
+flowchart TD
+  Entry[Application entry]
+  Bootstrap{Session bootstrap}
+  Public[Public layout]
+  Landing[Landing]
+  Login[Login]
+  Register[Registration]
+  Protected{Authenticated?}
+  AppShell[Application shell]
+  Dashboard[Dashboard]
+  Wallet[Wallet management]
+  Assistant[AI assistant]
+  Intent[Intent review]
+  Policy[Policies]
+  Simulation[Simulation]
+  Risk[Risk analysis]
+  Execution[Execution status]
+  Batch[Batch manager]
+  BatchVerify[Batch verification]
+  History[Transaction history]
+  Audit[Audit trail]
+  Security[Security monitoring]
+  Settings[Settings]
+  Denied[Unauthorized]
+  NotFound[Not found]
+
+  Entry --> Bootstrap
+  Bootstrap -->|loading| Loading[Neutral loading state]
+  Bootstrap -->|resolved| Public
+  Public --> Landing
+  Public --> Login
+  Public --> Register
+  Login --> Protected
+  Register --> Protected
+  Protected -->|yes| AppShell
+  Protected -->|no| Login
+  AppShell --> Dashboard
+  AppShell --> Wallet
+  AppShell --> Assistant
+  AppShell --> Intent
+  AppShell --> Policy
+  AppShell --> Simulation
+  AppShell --> Risk
+  AppShell --> Execution
+  AppShell --> Batch
+  Batch --> BatchVerify
+  AppShell --> History
+  AppShell --> Audit
+  AppShell --> Security
+  AppShell --> Settings
+  AppShell --> Denied
+  Public --> NotFound
+  AppShell --> NotFound

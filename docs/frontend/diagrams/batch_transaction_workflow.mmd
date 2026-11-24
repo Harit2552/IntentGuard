@@ -1,0 +1,30 @@
+flowchart TD
+  Individual[Create and verify each transaction individually]
+  Add[Add verified item]
+  Manager[Review batch membership and order]
+  Remove{Remove or edit an item?}
+  Invalidate[Invalidate final verification and dependent approval]
+  Validate[Backend validates exact batch and context]
+  Valid{Batch valid and current?}
+  Review[Review complete payload, account, chain, and contract]
+  Consent[User explicitly initiates supported contract operation]
+  Wallet[Wallet presents one supported contract call]
+  Execute[Contract execution]
+  Outcome{Execution outcome}
+  Confirmed[Show confirmed result and audit reference]
+  Partial[Show per-item outcome only if contract reports partial semantics]
+  Failed[Show rejection, revert, or unknown status]
+  Rebuild[Correct batch and request fresh validation]
+
+  Individual --> Add --> Manager --> Remove
+  Remove -->|yes| Invalidate --> Manager
+  Remove -->|no| Validate --> Valid
+  Valid -->|no or expired| Rebuild --> Individual
+  Valid -->|yes| Review --> Consent --> Wallet --> Execute --> Outcome
+  Outcome -->|confirmed| Confirmed
+  Outcome -->|partial, if supported| Partial
+  Outcome -->|rejected, reverted, pending, or unknown| Failed
+  Failed --> Rebuild
+
+  Note[One wallet approval means one contract call only when the deployed contract and wallet support it. Atomicity, limits, and partial failure are TBD.]
+  Review -. limitation .-> Note
