@@ -83,4 +83,6 @@ The backend listens on `http://localhost:5000` by default. Its health endpoint i
 
 ## Initialization status
 
-The workspaces, TypeScript configurations, frontend placeholder, backend health endpoint, shared package, and local Hardhat compiler setup are initialized. No IntentGuard transaction, AI, authentication, database, or on-chain business logic is included.
+The workspaces, TypeScript configurations, frontend foundation, backend health endpoint, shared package, and local Hardhat compiler setup are initialized.
+
+The frontend now includes the Stage 1–6 product shell and mock workflows for authentication, wallet context, AI intent drafts, policies, simulation, risk, execution review, batches, audit, and security monitoring. These are integration-ready UI and mock-service implementations, not real authentication, signing, broadcasting, or on-chain confirmation.
