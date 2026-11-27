@@ -1,0 +1,33 @@
+flowchart TD
+  Auth[Authenticate]
+  Connect[Connect wallet and check account and chain]
+  Prompt[Enter natural-language instruction]
+  AI[Backend generates intent draft]
+  Review[Review and edit structured intent]
+  Policy[Backend policy evaluation]
+  Allowed{Allowed and current?}
+  Sim[Backend transaction simulation]
+  Risk[Backend risk analysis]
+  Results{Results current and usable?}
+  Add[Add individually verified transaction to batch]
+  Final[Final batch validation]
+  Exact{Exact reviewed payload valid?}
+  Confirm[User reviews exact batch and contract call]
+  Wallet[Explicit MetaMask approval request]
+  Status[Track submission and confirmation]
+  Fix[Correct intent and re-evaluate]
+  Stop[Stop; show reason and preserve safe context]
+  Recheck[Account, chain, or payload changed: invalidate and revalidate]
+
+  Auth --> Connect --> Prompt --> AI --> Review --> Policy --> Allowed
+  Allowed -->|no or indeterminate| Fix
+  Fix --> Review
+  Allowed -->|yes| Sim --> Risk --> Results
+  Results -->|failed, stale, or unknown| Stop
+  Results -->|current| Add --> Final --> Exact
+  Exact -->|no| Stop
+  Exact -->|yes| Confirm --> Wallet --> Status
+  Connect -. context changed .-> Recheck
+  Review -. material edit .-> Recheck
+  Recheck --> Policy
+  Wallet -. rejected or failed .-> Stop

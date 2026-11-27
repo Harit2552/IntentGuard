@@ -1,0 +1,26 @@
+flowchart LR
+  User[User]
+  subgraph Browser[Browser]
+    UI[React routes and feature UI]
+    Forms[React Hook Form and Zod]
+    Query[TanStack Query server state]
+    Store[Zustand ephemeral UI state]
+    Wallet[Wallet adapter wagmi and viem]
+    Services[Typed API and wallet services]
+    UI --> Forms
+    UI --> Query
+    UI --> Store
+    UI --> Services
+    Query --> Services
+    Services --> Wallet
+  end
+  Backend[Express backend APIs<br/>planned contracts]
+  Policy[Policy and intent services<br/>backend authoritative]
+  Chain[Supported smart contract<br/>deployment and batch semantics TBD]
+  Provider[Wallet provider and blockchain]
+  User --> UI
+  Services --> Backend
+  Backend --> Policy
+  Wallet --> Provider
+  Provider --> Chain
+  Backend -. execution coordination contract TBD .-> Chain
